@@ -22,7 +22,7 @@ module "tfe" {
 
   distribution                = "ubuntu"
   dns_zone_name               = var.dns_zone_name
-  existing_service_account_id = var.existing_service_account_id
+  existing_service_account_id = var.google.service_account
   namespace                   = random_pet.main.id
   node_count                  = 1
   fqdn                        = var.fqdn

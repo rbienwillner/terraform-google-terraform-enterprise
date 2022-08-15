@@ -197,6 +197,7 @@ module "vm_instance_template" {
   version = "~> 7.1"
 
   name_prefix = "${var.namespace}-tfe-template-"
+  tags        = var.tags
 
   additional_disks = local.enable_disk ? [
     {
@@ -288,6 +289,7 @@ module "private_load_balancer" {
   subnetwork           = local.subnetwork
   dns_create_record    = var.dns_create_record
   ip_address           = google_compute_address.private[0].address
+  network              = var.network
 }
 
 module "private_tcp_load_balancer" {

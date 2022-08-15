@@ -2,6 +2,22 @@ resource "random_pet" "postgres" {
   length = 2
 }
 
+resource "google_compute_global_address" "private_ip_address" {
+  provider = google-beta
+
+  name          = "private-ip-address"
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  prefix_length = 22
+  network       = var.service_networking_connection.network
+}
+
+resource "google_service_networking_connection" "private_vpc_connection" {
+  network                 = var.service_networking_connection.network
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.private_ip_address.name]
+}
+
 resource "google_sql_database_instance" "tfe" {
   name             = "${var.namespace}-tfe-${random_pet.postgres.id}"
   database_version = var.postgres_version

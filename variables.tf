@@ -503,3 +503,8 @@ variable "extern_vault_token_renew" {
   description = "(Optional if var.extern_vault_enable = true) How often (in seconds) to renew the Vault token."
 }
 
+variable "tags" {
+  type        = list(string)
+  description = "Network tags, provided as a list"
+  default     = []
+}

@@ -20,10 +20,10 @@ module "existing_network" {
 
   distribution                = "ubuntu"
   dns_zone_name               = var.dns_zone_name
-  existing_service_account_id = var.existing_service_account_id
+  existing_service_account_id = var.google.service_account
   fqdn                        = var.fqdn
   labels                      = var.labels
-  load_balancer               = "PUBLIC"
+  load_balancer               = "PRIVATE"
   namespace                   = var.namespace
   network                     = var.network
   node_count                  = var.node_count
@@ -31,4 +31,5 @@ module "existing_network" {
   subnetwork                  = var.subnetwork
   tfe_license_secret_id       = module.secrets.license_secret
   vm_machine_type             = "n1-standard-32"
+  tags                        = ["allow-ssh", "load-balanced-backend"]
 }

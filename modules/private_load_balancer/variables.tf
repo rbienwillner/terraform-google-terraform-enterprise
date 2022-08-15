@@ -46,3 +46,9 @@ variable "subnetwork" {
     self_link = string
   })
 }
+
+variable "network" {
+  default     = null
+  description = "Pre-existing network self link"
+  type        = string
+}

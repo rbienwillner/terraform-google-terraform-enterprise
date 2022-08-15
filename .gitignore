@@ -30,3 +30,9 @@ work
 
 # replicated license files
 *.rli
+
+# other
+**/data/*
+**/output.txt
+**/certificate.crt
+**/private.key
